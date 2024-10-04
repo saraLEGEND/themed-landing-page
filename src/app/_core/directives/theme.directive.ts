@@ -1,6 +1,6 @@
 import { Directive, OnInit, Renderer2 } from '@angular/core';
-import { BaseDirective } from '../directive/base.directive';
-import { ThemeService } from './theme.service';
+import { BaseDirective } from './base.directive';
+import { ThemeService } from '../themes/theme.service';
 
 @Directive({ selector: '[appTheme]', standalone: true })
 export class ThemeDirective extends BaseDirective implements OnInit {

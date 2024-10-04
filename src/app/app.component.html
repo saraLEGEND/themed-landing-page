@@ -1,23 +1,23 @@
 <div appTheme class="container">
   <div class="sidebar">
     <nav>
-      <a class="btn" [routerLink]="appRoutes.HOME" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <a class="" [routerLink]="appRoutes.HOME" routerLinkActive="active" ariaCurrentWhenActive="page">
         {{ appRoutes.HOME }}
       </a>
-      <a class="btn" [routerLink]="appRoutes.SKILLS" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <a class="" [routerLink]="appRoutes.SKILLS" routerLinkActive="active" ariaCurrentWhenActive="page">
         {{ appRoutes.SKILLS }}
       </a>
-      <a class="btn" [routerLink]="appRoutes.ABOUT_ME" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <a class="" [routerLink]="appRoutes.ABOUT_ME" routerLinkActive="active" ariaCurrentWhenActive="page">
         {{ appRoutes.ABOUT_ME }}
       </a>
     </nav>
   </div>
 
   <div class="toolbar">
-    <span>Toolbar</span>
-    <button (click)="light()">light Theme</button>
-    <button (click)="dark()">dark Theme</button>
-    <button (click)="candy()">candy Theme</button>
+    <app-button (click)="light()" type="primary" text="Light theme"/>
+    <app-button (click)="dark()" type="secondary" text="Dark theme"/>
+    <app-button (click)="candy()" type="tertiary" text="Candy theme"/>
+    <app-icon icon="candy-mode"></app-icon>
   </div>
 
   <div class="content">

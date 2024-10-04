@@ -3,6 +3,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@themes/*": [
+        "styles/themes/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -15,6 +21,7 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",

@@ -1,0 +1,92 @@
+@mixin candy-primary {
+  background: linear-gradient(145deg, #ff5f6d, #ffc371); // Diagonal red to yellow gradient
+  color: white;
+  border-radius: 30px; // Rounded, candy-like shape
+  border: none;
+  padding: 12px 24px; // Adjust padding for a fuller button
+  font-size: 20px; // Larger text for prominence
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); // Shadow for depth
+  cursor: pointer;
+  position: relative; // Position relative for child pseudo-elements
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s; // Smooth transitions
+
+  // Adding a shiny effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); // Light overlay for shine
+    border-radius: 30px;
+    transition: opacity 0.2s;
+    opacity: 0.6; // Slightly visible shine
+  }
+
+  // Hover effect
+  &:hover {
+    transform: scale(1.05); // Slight "pop" effect
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.2); // Deeper shadow on hover
+    background: linear-gradient(145deg, #ff3d57, #ffc371); // Darker gradient on hover
+
+    &::before {
+      opacity: 0.2; // Dim the shine on hover
+    }
+  }
+
+  // Active effect (when clicked)
+  &:active {
+    transform: scale(0.95); // Slightly shrink on click
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Less shadow on active
+  }
+}
+
+@mixin candy-secondary {
+  background: linear-gradient(to bottom, #84fab0, #8fd3f4); // Green to blue gradient
+  color: #333;
+  border-radius: 25px;
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@mixin candy-tertiary {
+  background-color: #ffeb3b; // Bright yellow solid color
+  color: #333;
+  border-radius: 20px;
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+
+  &:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+  }
+}
+
+[theme="candy"] {
+  .btn-primary {
+    @include candy-primary;
+  }
+
+  .btn-secondary {
+    @include candy-secondary;
+  }
+
+  .btn-tertiary {
+    @include candy-tertiary;
+  }
+}
