@@ -78,15 +78,15 @@
 }
 
 [theme="candy"] {
-  .btn-primary {
+  .primary .btn {
     @include candy-primary;
   }
 
-  .btn-secondary {
+  .secondary .btn {
     @include candy-secondary;
   }
 
-  .btn-tertiary {
+  .tertiary .btn {
     @include candy-tertiary;
   }
 }

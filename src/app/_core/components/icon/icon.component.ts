@@ -1,6 +1,5 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { icons, path, Size } from './icon';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Size } from './icon';
 
 @Component({
   selector: 'app-icon',
@@ -8,24 +7,38 @@ import { icons, path, Size } from './icon';
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss']
 })
-export class IconComponent {
+export class IconComponent implements OnInit {
 
-  private currentSize: Size = 'small';
+  @HostBinding('style.-webkit-mask-image')
+  private _path!: string;
+  @HostBinding('style.background-color')
+  private _backgroundColor = 'black';
+  @HostBinding('style.width')
+  private _height = this.sizeValue();
+  @HostBinding('style.height')
+  private _width = this.sizeValue();
 
-  constructor(
-    private readonly domSanitizer: DomSanitizer,
-    private readonly elementRef: ElementRef
-  ) {}
+  private readonly basePath = 'assets/icons/';
+  private _size: Size = 'small';
 
   @Input()
-  set size(size: Size) {
-    this.currentSize = size;
-    this.setElementSize();
+  set path(filePath: string) {
+    this._path = `url(${ this.basePath }${ filePath }.svg)`;
   }
 
   @Input()
-  set icon(icon: string) {
-    this.iconPath(icon);
+  set backgroundColor(color: string) {
+    this._backgroundColor = color;
+  }
+
+  @Input()
+  set size(size: Size) {
+    this._size = size;
+  }
+
+  ngOnInit(): void {
+    this._height = this.sizeValue();
+    this._width = this.sizeValue();
   }
 
   private sizeValue(): string {
@@ -34,21 +47,9 @@ export class IconComponent {
       small: '1.5rem',
       medium: '1.8rem',
       large: '2.4rem',
-      fill: ''
+      fill: '100%'
     };
 
-    return sizeMap[this.currentSize];
-  }
-
-  private setElementSize(): void {
-    const nativeElement = this.elementRef.nativeElement as HTMLElement;
-    nativeElement.style.width = this.sizeValue();
-    nativeElement.style.height = this.sizeValue();
-    nativeElement.style.minWidth = this.sizeValue();
-    nativeElement.style.minHeight = this.sizeValue();
-  }
-
-  private iconPath(icon: string) {
-    return this.domSanitizer.bypassSecurityTrustResourceUrl(`${ path }${ icons[icon] }`);
+    return sizeMap[this._size];
   }
 }

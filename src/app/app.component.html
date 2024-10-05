@@ -14,10 +14,15 @@
   </div>
 
   <div class="toolbar">
-    <app-button (click)="light()" type="primary" text="Light theme"/>
-    <app-button (click)="dark()" type="secondary" text="Dark theme"/>
-    <app-button (click)="candy()" type="tertiary" text="Candy theme"/>
-    <app-icon icon="candy-mode"></app-icon>
+    <app-button (click)="light()" primary>
+      <app-icon [path]="'light-mode'"/>
+    </app-button>
+    <app-button (click)="dark()" secondary>
+      <app-icon [path]="'dark-mode'"/>
+    </app-button>
+    <app-button (click)="candy()" tertiary>
+      <app-icon [path]="'candy-mode'"/>
+    </app-button>
   </div>
 
   <div class="content">
