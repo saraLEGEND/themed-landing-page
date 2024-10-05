@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Size } from './icon';
+import { Icon, Size } from './icon';
 
 @Component({
   selector: 'app-icon',
@@ -22,7 +22,7 @@ export class IconComponent implements OnInit {
   private _size: Size = 'small';
 
   @Input()
-  set path(filePath: string) {
+  set path(filePath: Icon) {
     this._path = `url(${ this.basePath }${ filePath }.svg)`;
   }
 
