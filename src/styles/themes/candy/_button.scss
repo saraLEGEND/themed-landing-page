@@ -10,15 +10,22 @@
   }
 }
 
-@mixin bounce-move-up-down {
-  animation: bounce 1s infinite ease-in-out;
-
-  @keyframes bounce {
+@mixin wrappers-twist {
+  @keyframes wrapper-twist-left {
     0%, 100% {
-      transform: translateY(0);
+      transform: translateY(-50%) rotate(35deg);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-50%) rotate(50deg);
+    }
+  }
+
+  @keyframes wrapper-twist-right {
+    0%, 100% {
+      transform: translateY(-50%) rotate(-35deg);
+    }
+    50% {
+      transform: translateY(-60%) rotate(-40deg);
     }
   }
 }
@@ -26,20 +33,60 @@
 /* Button styles */
 @mixin base-button {
   display: inline-block;
-  padding: 0.5rem 1.25rem;
+  padding: 0.20rem 0.5rem;
+  margin: 0.5rem;
   color: var(--light);
   border: none;
   border-radius: 50px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: rotate(-25deg);
   position: relative;
-  overflow: hidden;
 
-  @include bounce-move-up-down;
+  // Candy wrapper ends
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: inherit; // Match the button's gradient background
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%); // Create triangle shape
+  }
+
+  //Left wrapper
+  &::before {
+    left: -23px;
+    transform: translateY(-50%) rotate(43deg);
+  }
+
+  // Right wrapper
+  &::after {
+    right: -16px;
+    top: 13px;
+    transform: translateY(-50%) rotate(-25deg);
+  }
 
   &:hover {
     @include slide-background-rainbow;
+    transform: rotate(-15deg) scale(1.1);
+
+    app-icon {
+      background-color: var(--light)!important;
+    }
+  }
+
+  @include wrappers-twist;
+
+  &:hover::before {
+    animation: wrapper-twist-left 0.5s ease-in-out forwards;
+  }
+
+  &:hover::after {
+    animation: wrapper-twist-right 0.5s ease-in-out forwards;
   }
 }
 
