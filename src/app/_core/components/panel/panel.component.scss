@@ -1,42 +1,19 @@
-//.container {
-//  display: grid;
-//  grid-template-rows: 4rem 1fr;
-//  min-height: 100vh;
-//  background-color: var(--background);
-//  //background-image: var(--background-image);
-//  background-size: cover;
-//  background-position: center;
-//  background-repeat: no-repeat;
-//
-//  .toolbar {
-//    grid-row: 1 / 2;
-//    grid-column: 2 / 3;
-//    display: flex;
-//    justify-content: right;
-//    align-items: center;
-//    padding-right: 1.5rem;
-//  }
-//
-//  .content {
-//    grid-row: 2 / 3;
-//    grid-column: 2 / 3;
-//    padding: 3rem 5rem;
-//  }
-//}
-
-.layout_inner {
-  position: relative;
-  right: 0
-}
-
 .container {
   position: relative;
   flex-grow: 1
 }
 
 .layout {
-  position: relative;
-  z-index: 2
+  background-image: var(--back-background-image);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+  }
 }
 
 main {
@@ -47,10 +24,6 @@ main {
   width: 100%;
   height: 100vh;
   overflow: hidden
-}
-
-.transition-fade {
-  transition: opacity 0.5s ease;
 }
 
 .flip {
@@ -86,26 +59,26 @@ main {
   &__image {
     position: relative;
     display: grid;
-    width: 100%;
-    height: 100%;
     transform: translateZ(-20px);
     transform-style: preserve-3d;
-    will-change: transform
+    will-change: transform;
   }
 
   &__panel {
     position: relative;
     transform: rotateX(0);
     transform-style: preserve-3d;
-    transition: transform 1s ease, box-shadow 0.5s ease;
-    will-change: transform, box-shadow;
+    transition: transform 0.6s ease;
+    will-change: transform;
 
+    // Flip the panel
     &[data-hover=true],
     &[data-turn=true] {
       transform: rotateX(180deg);
     }
   }
 
+  // Make both item panels superposed
   &__panel-item {
     position: absolute;
     top: 0;
@@ -113,16 +86,32 @@ main {
     width: 100%;
     height: 100%;
     backface-visibility: hidden; // important for flipping effect
-    border-radius: min(min(10px, .625vw), min(10px, 1.002004008vh));
+    border-radius: min(min(10px, .625vw), min(10px, 1vh));
   }
 
   // Front panel doesn't need any transform initially
   &__panel-item[data-panel-item='front'] {
     transform: rotateX(0);
+    background-image: var(--front-background-image);
+    background-size: calc(100% * 6) calc(100% * 6);
   }
 
   // Back panel is initially rotated 180 degrees
   &__panel-item[data-panel-item='back'] {
     transform: rotateX(180deg);
+    background-size: calc(100% * 6) calc(100% * 6);
+  }
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px); // First bounce (upward)
+  }
+  60% {
+    transform: translateY(-10px); // Smaller bounce
   }
 }

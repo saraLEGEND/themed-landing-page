@@ -24,6 +24,7 @@ import { MenuComponent } from './menu/menu.component';
 })
 export class AppComponent {
   readonly appRoutes = AppRoute;
+  flipAll = false;
 
   constructor(private readonly themeService: ThemeService) {}
 
@@ -37,5 +38,9 @@ export class AppComponent {
 
   candy(): void {
     this.themeService.setTheme(Theme.CANDY);
+  }
+
+  toggleFlipAllPanel(): void {
+    this.flipAll = !this.flipAll;
   }
 }

@@ -1,121 +1,86 @@
-/* Animations */
-@mixin slide-background-rainbow {
-  background-image: linear-gradient(to right, #E7484F, #F68B1D, #FCED00, #009E4F, #00AAC3, #732982);
-  animation: slidebg 5s linear infinite;
-
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
-  }
-}
-
-@mixin wrappers-twist {
-  @keyframes wrapper-twist-left {
-    0%, 100% {
-      transform: translateY(-50%) rotate(35deg);
-    }
-    50% {
-      transform: translateY(-50%) rotate(50deg);
-    }
-  }
-
-  @keyframes wrapper-twist-right {
-    0%, 100% {
-      transform: translateY(-50%) rotate(-35deg);
-    }
-    50% {
-      transform: translateY(-60%) rotate(-40deg);
-    }
-  }
-}
-
-@mixin wrappers {
-  // Candy wrapper ends
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 55%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    background: inherit; // Match the button's gradient background
-    clip-path: polygon(0% 50%, 100% 0%, 100% 100%); // Create triangle shape
-  }
-
-  //Left wrapper
-  &::before {
-    visibility: hidden;
-    left: -23px;
-    transform: translateY(-50%) rotate(43deg);
-  }
-
-  // Right wrapper
-  &::after {
-    visibility: hidden;
-    right: -16px;
-    top: 13px;
-    transform: translateY(-50%) rotate(-25deg);
-  }
-
-  @include wrappers-twist;
-
-  &:hover::before {
-    visibility: visible;
-    animation: wrapper-twist-left 0.5s ease-in-out forwards;
-  }
-
-  &:hover::after {
-    visibility: visible;
-    animation: wrapper-twist-right 0.5s ease-in-out forwards;
-  }
-}
-
 /* Button styles */
+$primary: var(--primary);
+$secondary: var(--secondary);
+$tertiary: var(--tertiary);
+$light: var(--light);
+
 @mixin base-button {
-  display: inline-block;
-  padding: 0.20rem 0.5rem;
-  margin: 0.5rem;
-  color: var(--light);
-  border: none;
-  border-radius: 50px;
-  text-transform: uppercase;
+  color: $light;
+  margin: 0.30rem;
+  padding: 0.40em 2em;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform: rotate(-25deg);
-  position: relative;
-  background-color: transparent;
+  border-radius: 8px;
+  transition: all 0.8s ease;
 
-  &:hover {
-    @include slide-background-rainbow;
-    transform: rotate(-15deg) scale(1.1);
-
-    app-icon {
-      background-color: var(--background) !important;
-    }
+  app-icon {
+    background-color: $light !important;
   }
 }
 
 @mixin candy-primary {
   @include base-button;
-  @include wrappers;
-  background: linear-gradient(20deg,
-    var(--primary), var(--danger), var(--light), var(--primary), var(--light), var(--danger), var(--primary));
+
+  background-color: $primary;
+  border: $primary 2px solid;
+
+  &:hover {
+    padding: 1em 1.5em;
+    letter-spacing: 2.5px;
+    box-shadow: 0 0 0 2px $light,
+    0 0 0 3px $primary,
+    0 0 0 2px $light inset,
+    0 0 0 5px $primary,
+    7.5px 7.5px 0 2.5px $light,
+    10px 10px 0 5px $primary;
+
+    app-icon {
+      background-color: $light !important;
+    }
+  }
 }
 
 @mixin candy-secondary {
   @include base-button;
-  @include wrappers;
-  background: linear-gradient(20deg,
-    var(--secondary), var(--warning), var(--light), var(--secondary), var(--light), var(--warning), var(--secondary));
+
+  background-color: $secondary;
+  border: $secondary 2px solid;
+
+  &:hover {
+    box-shadow: 0 0 0 5px $light inset,
+    0 0 0 7.5px $secondary inset,
+    0 0 0 10px $light inset,
+    0 0 0 1px $secondary,
+    0 0 0 3px $light,
+    0 0 0 5px $secondary;
+
+    color: $secondary;
+    border-radius: 10px;
+
+    app-icon {
+      background-color: $light !important;
+    }
+  }
 }
 
 @mixin candy-tertiary {
   @include base-button;
-  @include wrappers;
-  background: linear-gradient(20deg,
-    var(--tertiary), var(--info), var(--light), var(--tertiary), var(--light), var(--info), var(--tertiary));
+
+  background-color: $tertiary;
+  border: $tertiary 2px solid;
+
+  &:hover {
+    box-shadow: 0 0 0 1px white,
+    0 0 0 2px $tertiary,
+    0 0 0 5px $tertiary,
+    0 0 0 6.5px white,
+    0 0 0 7px $tertiary;
+    border-radius: 100px;
+    background-color: $light;
+
+    app-icon {
+      background-color: $tertiary !important;
+    }
+  }
 }
 
 /* Apply theme style */
