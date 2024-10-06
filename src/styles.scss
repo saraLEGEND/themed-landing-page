@@ -4,10 +4,23 @@ html,
 body {
   margin: 0;
   color: var(--text);
-  background-color: var(--background);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease; // maybe no need
-
   font-family: var(--font-family), monospace;
-  letter-spacing: 0.2em;
+  background-color: var(--background);
+}
+
+li {
+  list-style: none
+}
+
+a {
+  -webkit-text-decoration: none;
+  text-decoration: none
+}
+
+html[data-hidden=true] {
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none
 }

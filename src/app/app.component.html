@@ -1,17 +1,5 @@
 <div appTheme class="container">
-  <div class="sidebar">
-    <nav>
-      <a class="" [routerLink]="appRoutes.HOME" routerLinkActive="active" ariaCurrentWhenActive="page">
-        {{ appRoutes.HOME }}
-      </a>
-      <a class="" [routerLink]="appRoutes.SKILLS" routerLinkActive="active" ariaCurrentWhenActive="page">
-        {{ appRoutes.SKILLS }}
-      </a>
-      <a class="" [routerLink]="appRoutes.ABOUT_ME" routerLinkActive="active" ariaCurrentWhenActive="page">
-        {{ appRoutes.ABOUT_ME }}
-      </a>
-    </nav>
-  </div>
+<!--  <app-menu/>-->
 
   <div class="toolbar">
     <app-button (click)="light()" primary>
@@ -25,9 +13,11 @@
     </app-button>
   </div>
 
-  <div class="content">
-    <h1>Themed Single Landing Page</h1>
+  <app-panel/>
 
-    <router-outlet/>
-  </div>
+<!--  <div class="content">-->
+<!--    <h1>Themed Single Landing Page</h1>-->
+
+<!--    <router-outlet/>-->
+<!--  </div>-->
 </div>

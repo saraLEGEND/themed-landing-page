@@ -1,0 +1,43 @@
+<div class="layout_inner">
+  <div class="container">
+    <div class="layout transition-fade">
+      <main>
+        <div class="container">
+          <div class="flip">
+            <div class="flip_wrapper">
+              <div class="flip_inner">
+                <div class="flip__wrap">
+                  @for (panel of panels; track panel.id; ) {
+                    <div class="flip__image">
+                      <div class="flip__panel"
+                        [attr.data-panel]="panel.id"
+                        [attr.data-turn]="panel.turned"
+                        [attr.data-hover]="panel.hovered"
+                        (mouseenter)="onMouseEnter(panel.id)"
+                        (mouseleave)="onMouseLeave(panel.id)"
+                        (click)="togglePanel(panel.id)"
+                      >
+                        <div class="flip__panel-item"
+                          data-panel-item="front"
+                          [ngStyle]="{'background-color': panel.front}"
+                        >
+                        </div>
+                        @if (panel.visible) {
+                          <div class="flip__panel-item"
+                            data-panel-item="back"
+                            [ngStyle]="{'background-color': panel.back}"
+                          >
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

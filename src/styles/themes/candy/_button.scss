@@ -30,20 +30,7 @@
   }
 }
 
-/* Button styles */
-@mixin base-button {
-  display: inline-block;
-  padding: 0.20rem 0.5rem;
-  margin: 0.5rem;
-  color: var(--light);
-  border: none;
-  border-radius: 50px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform: rotate(-25deg);
-  position: relative;
-
+@mixin wrappers {
   // Candy wrapper ends
   &::before,
   &::after {
@@ -59,57 +46,84 @@
 
   //Left wrapper
   &::before {
+    visibility: hidden;
     left: -23px;
     transform: translateY(-50%) rotate(43deg);
   }
 
   // Right wrapper
   &::after {
+    visibility: hidden;
     right: -16px;
     top: 13px;
     transform: translateY(-50%) rotate(-25deg);
   }
+
+  @include wrappers-twist;
+
+  &:hover::before {
+    visibility: visible;
+    animation: wrapper-twist-left 0.5s ease-in-out forwards;
+  }
+
+  &:hover::after {
+    visibility: visible;
+    animation: wrapper-twist-right 0.5s ease-in-out forwards;
+  }
+}
+
+/* Button styles */
+@mixin base-button {
+  display: inline-block;
+  padding: 0.20rem 0.5rem;
+  margin: 0.5rem;
+  color: var(--light);
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: rotate(-25deg);
+  position: relative;
+  background-color: transparent;
 
   &:hover {
     @include slide-background-rainbow;
     transform: rotate(-15deg) scale(1.1);
 
     app-icon {
-      background-color: var(--light)!important;
+      background-color: var(--background) !important;
     }
-  }
-
-  @include wrappers-twist;
-
-  &:hover::before {
-    animation: wrapper-twist-left 0.5s ease-in-out forwards;
-  }
-
-  &:hover::after {
-    animation: wrapper-twist-right 0.5s ease-in-out forwards;
   }
 }
 
 @mixin candy-primary {
   @include base-button;
+  @include wrappers;
   background: linear-gradient(20deg,
     var(--primary), var(--danger), var(--light), var(--primary), var(--light), var(--danger), var(--primary));
 }
 
 @mixin candy-secondary {
   @include base-button;
+  @include wrappers;
   background: linear-gradient(20deg,
     var(--secondary), var(--warning), var(--light), var(--secondary), var(--light), var(--warning), var(--secondary));
 }
 
 @mixin candy-tertiary {
   @include base-button;
+  @include wrappers;
   background: linear-gradient(20deg,
     var(--tertiary), var(--info), var(--light), var(--tertiary), var(--light), var(--info), var(--tertiary));
 }
 
 /* Apply theme style */
 [theme="candy"] {
+  .btn {
+    @include base-button;
+  }
+
   .primary .btn {
     @include candy-primary;
   }
