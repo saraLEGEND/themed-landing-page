@@ -1,26 +1,18 @@
 <div appTheme class="container">
-<!--  <app-menu/>-->
-
   <div class="toolbar">
-    <app-button (click)="light()" primary>
+    <app-button (click)="light()" primary rippleEffect>
       <app-icon path="light-mode" size="small"/>
     </app-button>
-    <app-button (click)="dark()" secondary>
+    <app-button (click)="dark()" primary rippleEffect>
       <app-icon path="dark-mode" size="small"/>
-    </app-button>
-    <app-button (click)="candy()" tertiary>
-      <app-icon path="candy-mode" size="small"/>
-    </app-button>
-    <app-button (click)="toggleFlipAllPanel()">
-      <app-icon path="close" size="small"/>
     </app-button>
   </div>
 
-  <app-panel [flipAll]="flipAll"/>
+  <div class="menu">
+    <app-menu/>
+  </div>
 
-<!--  <div class="content">-->
-<!--    <h1>Themed Single Landing Page</h1>-->
-
-<!--    <router-outlet/>-->
-<!--  </div>-->
+  <div class="content">
+    <router-outlet/>
+  </div>
 </div>

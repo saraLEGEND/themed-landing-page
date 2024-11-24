@@ -6,7 +6,10 @@ export type Size = 'xsmall' | 'small' | 'medium' | 'large' | 'fill';
  * @see IconComponent
  */
 export type Icon = 'burger-menu'
-  | 'candy-mode'
   | 'close'
   | 'dark-mode'
-  | 'light-mode';
+  | 'home'
+  | 'light-mode'
+  | 'logo'
+  | 'profil'
+  | 'skills';

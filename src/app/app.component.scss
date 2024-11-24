@@ -1,19 +1,29 @@
 .container {
   display: grid;
-  grid-template-rows: 4rem 1fr;
-  min-height: 100vh;
+  grid-template-rows: 60px auto;
+  grid-template-columns: 200px auto;
+  grid-template-areas:
+  "menu toolbar"
+  "menu content";
+  height: 100vh;
+  margin: 0;
   background-color: var(--background);
 
   .toolbar {
+    grid-area: toolbar;
+    gap: 5px;
     display: flex;
-    flex-direction: column;
-    z-index: 999;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    align-items: center;
+    justify-content: end;
+    padding: 0.5rem;
+  }
+
+  .menu {
+    grid-area: menu;
   }
 
   .content {
-
+    grid-area: content;
+    overflow-y: auto;
   }
 }

@@ -5,7 +5,7 @@ import { Theme } from './theme.enum';
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
 
-  private activeTheme = new BehaviorSubject<Theme>(Theme.CANDY);
+  private activeTheme = new BehaviorSubject<Theme>(Theme.LIGHT);
 
   get theme$(): Observable<Theme> {
     return this.activeTheme.asObservable();

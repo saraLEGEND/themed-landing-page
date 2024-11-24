@@ -1,0 +1,21 @@
+:host {
+  height: 100%;
+}
+
+.menu {
+  height: 100%;
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1.5rem;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+  }
+}

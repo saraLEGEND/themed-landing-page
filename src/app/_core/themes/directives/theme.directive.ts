@@ -1,6 +1,6 @@
 import { Directive, OnInit, Renderer2 } from '@angular/core';
-import { ThemeService } from '../themes/theme.service';
-import { BaseDirective } from './base.directive';
+import { ThemeService } from '../theme.service';
+import { BaseDirective } from '../../directives/base.directive';
 
 @Directive({ selector: '[appTheme]', standalone: true })
 export class ThemeDirective extends BaseDirective implements OnInit {
@@ -13,9 +13,9 @@ export class ThemeDirective extends BaseDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeService.theme$.pipe(
-      this.takeUntilDestroy()
-    ).subscribe(theme => this.updateTheme(theme));
+    this.themeService.theme$
+      .pipe(this.takeUntilDestroy()
+      ).subscribe(theme => this.updateTheme(theme));
   }
 
   private updateTheme(theme: string): void {

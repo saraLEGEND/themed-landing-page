@@ -1,25 +1,11 @@
 <div class="menu">
-  <div class="menu__inner">
-    <span class="menu__text" [ngClass]="isOpenClasse">MENU</span>
-    <div class="menu__wrap">
-
-      <app-button class="menu__btn" [ngClass]="isOpenClasse" (click)="toggleMenu()">
-        <app-icon [path]="isOpenIcon" size="large"/>
-      </app-button>
-
-      <div class="menu__nav" [ngClass]="isOpenClasse">
-        <nav class="menu__content">
-          <a [routerLink]="appRoutes.HOME" routerLinkActive="active" ariaCurrentWhenActive="page">
-            {{ appRoutes.HOME }}
-          </a>
-          <a [routerLink]="appRoutes.SKILLS" routerLinkActive="active" ariaCurrentWhenActive="page">
-            {{ appRoutes.SKILLS }}
-          </a>
-          <a [routerLink]="appRoutes.ABOUT_ME" routerLinkActive="active" ariaCurrentWhenActive="page">
-            {{ appRoutes.ABOUT_ME }}
-          </a>
-        </nav>
-      </div>
-    </div>
+  <div class="menu__logo">
+    <span>saraLegend</span>
   </div>
+
+  <nav class="menu__nav">
+    <app-menu-item [routerLink]="appRoutes.HOME" icon="home" size="medium" label="{{ appRoutes.HOME }}"/>
+    <app-menu-item [routerLink]="appRoutes.SKILLS" icon="skills" size="large" label="{{ appRoutes.SKILLS }}"/>
+    <app-menu-item [routerLink]="appRoutes.ABOUT_ME" icon="profil" size="medium" label="{{ appRoutes.ABOUT_ME }}"/>
+  </nav>
 </div>
