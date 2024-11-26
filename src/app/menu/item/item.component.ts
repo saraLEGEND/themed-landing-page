@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Icon, Size } from '../../_core/components/icon/icon';
 import { IconComponent } from '../../_core/components/icon/icon.component';
+import { PrimaryDirective } from '../../_core/themes/directives/primary.directive';
 import { RippleEffectDirective } from '../../_core/themes/directives/ripple-effect.directive';
 
 @Component({
@@ -11,7 +12,8 @@ import { RippleEffectDirective } from '../../_core/themes/directives/ripple-effe
   imports: [
     RouterLink,
     IconComponent,
-    RippleEffectDirective
+    RippleEffectDirective,
+    PrimaryDirective
   ],
   styleUrls: ['./item.component.scss']
 })

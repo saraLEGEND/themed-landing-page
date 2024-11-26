@@ -1,11 +1,19 @@
 <div class="menu">
-  <div class="menu__logo">
-    <span>saraLegend</span>
+  <div>
+    <div class="menu__logo">
+      <span>saraLegend</span>
+    </div>
+
+    <nav class="menu__nav">
+      <app-menu-item [routerLink]="appRoutes.HOME" icon="home" size="medium" label="{{ appRoutes.HOME }}"/>
+      <app-menu-item [routerLink]="appRoutes.SKILLS" icon="skills" size="large" label="{{ appRoutes.SKILLS }}"/>
+      <app-menu-item [routerLink]="appRoutes.ABOUT_ME" icon="profil" size="medium" label="{{ appRoutes.ABOUT_ME }}"/>
+    </nav>
   </div>
 
-  <nav class="menu__nav">
-    <app-menu-item [routerLink]="appRoutes.HOME" icon="home" size="medium" label="{{ appRoutes.HOME }}"/>
-    <app-menu-item [routerLink]="appRoutes.SKILLS" icon="skills" size="large" label="{{ appRoutes.SKILLS }}"/>
-    <app-menu-item [routerLink]="appRoutes.ABOUT_ME" icon="profil" size="medium" label="{{ appRoutes.ABOUT_ME }}"/>
-  </nav>
+  <div class="menu__media">
+    <a href="#" class="fa fa-linkedin"></a>
+    <a href="#" class="fa fa-instagram"></a>
+    <a href="#" class="fa fa-github"></a>
+  </div>
 </div>

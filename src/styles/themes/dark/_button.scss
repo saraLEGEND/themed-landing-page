@@ -1,0 +1,17 @@
+@import "./shared";
+
+[theme="dark"] {
+  .btn {
+    @include base-button;
+  }
+
+  .primary .btn {
+    @include base-button-animation;
+  }
+
+  .secondary .btn {
+    box-shadow: inset 0 0 0 2px var(--secondary);
+    border-radius: 5px;
+    @include base-button-animation;
+  }
+}

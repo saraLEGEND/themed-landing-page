@@ -1,0 +1,80 @@
+$border-color: var(--text);
+
+@mixin base-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0.5em 2em;
+  color: var(--text);
+  font-size: inherit;
+  font-weight: 700;
+
+  // Required, since we're setting absolute on pseudo-elements
+  position: relative;
+  vertical-align: middle;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  app-icon {
+    background-color: var(--text) !important;
+  }
+}
+
+@mixin base-button-animation {
+  transition: color 0.25s;
+
+  &::before,
+  &::after {
+    // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+    border: 2px solid transparent;
+    border-radius: 5px;
+    width: 0;
+    height: 0;
+  }
+
+  // This covers the top & right borders (expands right, then down)
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  // And this the bottom & left borders (expands left, then up)
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+
+  &:hover {
+    color: $border-color;
+  }
+
+  // Hover styles
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before {
+    border-top-color: $border-color; // Make borders visible
+    border-right-color: $border-color;
+    transition: width 0.25s ease-out, // Width expands first
+    height 0.25s ease-out 0.25s; // And then height
+  }
+
+  &:hover::after {
+    border-bottom-color: $border-color; // Make borders visible
+    border-left-color: $border-color;
+    transition: border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+    width 0.25s ease-out 0.5s, // And then expanding width
+    height 0.25s ease-out 0.75s; // And finally height
+  }
+}
